@@ -1,0 +1,61 @@
+{
+  "name": "viztracer-vscode",
+  "displayName": "VizTracer VS Code",
+  "publisher": "gaogaotiantian",
+  "description": "VSCode plugin for VizTracer",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/gaogaotiantian/viztracer-vscode"
+  },
+  "keywords": [
+    "python",
+    "profiling",
+    "devtools"
+  ],
+  "activationEvents": [],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [{
+      "command": "viztracer.vizviewer",
+      "title": "View with vizviewer"
+    }],
+    "menus": {
+      "explorer/context": [{
+        "when": "resourceFilename =~ /\\.(json)$/i",
+        "command": "viztracer.vizviewer",
+        "group": "viztracer"
+      }],
+      "debug/toolBar": [{
+        "command": "viztracer.vizviewer",
+        "group": "viztracer"
+      }]
+    }
+  },
+  "extensionDependencies": [
+        "ms-python.python"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "@vscode/python-extension": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.84.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8"
+  }
+}
