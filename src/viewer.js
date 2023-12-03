@@ -53,8 +53,8 @@ function runVizViewer(pythonPath, reportPath, port)
 
 function openInWebview(url, title, closeCallback)
 {
-    const columnTwoVisible = vscode.window.visibleTextEditors.some((editor) => {
-        return editor.viewColumn == vscode.ViewColumn.Two;
+    const columnTwoVisible = vscode.window.tabGroups.all.some((group) => {
+        return group.viewColumn == vscode.ViewColumn.Two;
     });
 
     const panel = vscode.window.createWebviewPanel(
