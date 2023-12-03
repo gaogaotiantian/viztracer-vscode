@@ -5,6 +5,10 @@
 
 This is a VS Code Extension for [VizTracer](https://github.com/gaogaotiantian/viztracer)
 
+<p align="center">
+    <img src="https://github.com/gaogaotiantian/viztracer-vscode/raw/main/assets/demo.gif" />
+</p>
+
 ## Requirements
 
 * Official python extension for VS Code.
