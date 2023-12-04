@@ -33,10 +33,6 @@
         "when": "resourceFilename =~ /\\.(json)$/i",
         "command": "viztracer.vizviewer",
         "group": "viztracer"
-      }],
-      "debug/toolBar": [{
-        "command": "viztracer.vizviewer",
-        "group": "viztracer"
       }]
     }
   },
