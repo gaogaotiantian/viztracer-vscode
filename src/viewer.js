@@ -90,12 +90,16 @@ function openInWebview(url, title, closeCallback)
     panel.webview.onDidReceiveMessage((message) => {
         if (message.type == 'viztracer') {
             if (message.action == 'openfile') {
-                vscode.workspace.openTextDocument(message.file).then((doc) => {
-                    vscode.window.showTextDocument(doc, vscode.ViewColumn.One, true).then((editor) => {
-                        let range = new vscode.Range(message.line - 1, 0, message.line - 1, 0);
-                        editor.revealRange(range, vscode.TextEditorRevealType.AtTop);
+                if (fs.existsSync(message.file)) {
+                    vscode.workspace.openTextDocument(message.file).then((doc) => {
+                        vscode.window.showTextDocument(doc, vscode.ViewColumn.One, true).then((editor) => {
+                            let range = new vscode.Range(message.line - 1, 0, message.line - 1, 0);
+                            editor.revealRange(range, vscode.TextEditorRevealType.AtTop);
+                        });
                     });
-                });
+                } else {
+                    vscode.window.showErrorMessage(`File ${message.file} does not exist`);
+                }
             }
         }
     })
