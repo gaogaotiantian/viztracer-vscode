@@ -53,7 +53,7 @@ function versionAtLeast(version, target) {
             return false;
         }
     }
-    return false;
+    return true;
 }
 
 module.exports = {
