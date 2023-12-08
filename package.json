@@ -3,7 +3,7 @@
   "displayName": "VizTracer VS Code",
   "publisher": "gaogaotiantian",
   "description": "VSCode plugin for VizTracer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "engines": {
     "vscode": "^1.84.0"
   },
