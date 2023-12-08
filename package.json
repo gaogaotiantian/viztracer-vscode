@@ -24,20 +24,48 @@
   "activationEvents": [],
   "main": "./src/extension.js",
   "contributes": {
-    "commands": [{
-      "command": "viztracer.vizviewer",
-      "title": "View with VizTracer"
-    }],
+    "commands": [
+      {
+        "command": "viztracer.view",
+        "title": "View with VizTracer"
+      },
+      {
+        "command": "viztracer.trace",
+        "title": "Trace with VizTracer"
+      }
+    ],
     "menus": {
-      "explorer/context": [{
-        "when": "resourceFilename =~ /\\.(json)$/i",
-        "command": "viztracer.vizviewer",
-        "group": "viztracer"
-      }]
+      "explorer/context": [
+        {
+          "when": "resourceFilename =~ /\\.(json)$/i",
+          "command": "viztracer.view",
+          "group": "viztracer"
+        },
+        {
+          "when": "resourceFilename =~ /\\.(py)$/i",
+          "command": "viztracer.trace",
+          "group": "viztracer"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "VizTracer",
+      "properties": {
+        "viztracer.viztracerArguments": {
+          "type": "string",
+          "default": "",
+          "description": "Arguments to pass to VizTracer"
+        },
+        "viztracer.scriptArguments": {
+          "type": "string",
+          "default": "",
+          "description": "Arguments to pass to the script"
+        }
+      }
     }
   },
   "extensionDependencies": [
-        "ms-python.python"
+    "ms-python.python"
   ],
   "scripts": {
     "lint": "eslint .",

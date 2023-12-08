@@ -16,14 +16,21 @@ This is a VS Code Extension for [VizTracer](https://github.com/gaogaotiantian/vi
 
 ## Usage
 
-Currently, you still need to trace your code with `viztracer` command line tool.
-This extension improves the user experience for viewing the trace report.
+### Trace Scripts
+
+Right click on your python script and choose `Trace with VizTracer` or just do it
+on command line with `viztracer`.
+
+To set the arguments to `viztracer` or your script, use `viztracer.viztracerArguments`
+and `viztracer.scriptArguments` settings.
+
+### View Reports
 
 Right-click on your `json` report in the file explorer, choose "View with vizviewer".
 
 If Column Two exists, the report will be shown in Column Two. Otherwise it will be shown in Column One.
 
-## Source code explorer
+### Source code explorer
 
 An "Open in VSCode" button will be displayed above the original source code. Click to open the source code in VS Code.
 

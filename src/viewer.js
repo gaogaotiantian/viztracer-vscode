@@ -2,13 +2,8 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
-const { PythonExtension } = require('@vscode/python-extension');
 
-const {
-    getViztracerVersion,
-    showOptionsWithoutViztracer,
-    versionAtLeast
-} = require('./common.js');
+const { confirmVizTracerVersion} = require('./common.js');
 
 function viewReport(reportPath)
 {
@@ -16,31 +11,10 @@ function viewReport(reportPath)
         vscode.window.showErrorMessage("Report file does not exist");
         return;
     }
-
-    PythonExtension.api().then((api) => {
-        if (!api) {
-            vscode.window.showErrorMessage("Please install Python extension to view the report");
-            return;
+    confirmVizTracerVersion("0.16.1").then((pythonPath) => {
+        if (pythonPath) {
+            runVizViewer(pythonPath, reportPath, 9001);
         }
-
-        const environmentPath = api.environments.getActiveEnvironmentPath();
-        api.environments.resolveEnvironment(environmentPath).then((environment) => {
-            getViztracerVersion(environment.path).then((version) => {
-                if (!version || !versionAtLeast(version, "0.16.1")) {
-                    let message = "Please upgrade VizTracer to view the report";
-                    if (!version) {
-                        message = "Please install VizTracer to view the report";
-                    }
-                    showOptionsWithoutViztracer(message, environment.path).then((installed) => {
-                        if (installed) {
-                            runVizViewer(environment.path, reportPath, 9001);
-                        }
-                    });
-                } else {
-                    runVizViewer(environment.path, reportPath, 9001);
-                }
-            });
-        });
     });
 }
 
