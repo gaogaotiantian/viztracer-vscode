@@ -26,7 +26,7 @@ and `viztracer.scriptArguments` settings.
 
 ### View Reports
 
-Right-click on your `json` report in the file explorer, choose "View with vizviewer".
+Right-click on your `json` report in the file explorer, choose `View with vizviewer`.
 
 If Column Two exists, the report will be shown in Column Two. Otherwise it will be shown in Column One.
 
