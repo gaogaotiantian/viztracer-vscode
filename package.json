@@ -60,6 +60,18 @@
           "type": "string",
           "default": "",
           "description": "Arguments to pass to the script"
+        },
+        "viztracer.openTabOn": {
+          "type": "string",
+          "default": "Always New",
+          "enum": [
+            "Always New",
+            "Column One",
+            "Column Two",
+            "Next To Active",
+            "Rightmost Existing"
+          ],
+          "description": "Which column will be used to open the viewer tab"
         }
       }
     }

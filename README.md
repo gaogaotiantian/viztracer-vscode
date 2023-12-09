@@ -28,7 +28,8 @@ and `viztracer.scriptArguments` settings.
 
 Right-click on your `json` report in the file explorer, choose `View with vizviewer`.
 
-If Column Two exists, the report will be shown in Column Two. Otherwise it will be shown in Column One.
+You can configure which column(tab group) will be used to hold the viewer tab with `viztracer.openTabOn`.
+The default is `Always New`, which always creates a new column for the viewer tab.
 
 ### Source code explorer
 

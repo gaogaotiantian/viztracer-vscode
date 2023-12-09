@@ -45,16 +45,32 @@ function runVizViewer(pythonPath, reportPath, port)
 
 }
 
+function chooseColumnToView() {
+    const columnConfig = vscode.workspace.getConfiguration('viztracer').get('openTabOn');
+    const tabGroups = vscode.window.tabGroups;
+
+    switch (columnConfig) {
+        case "Always New":
+            return Math.max(...tabGroups.all.map((group) => group.viewColumn)) + 1;
+        case "Column One":
+            return vscode.ViewColumn.One;
+        case "Column Two":
+            return vscode.ViewColumn.Two;
+        case "Next To Active":
+            return vscode.window.tabGroups.activeTabGroup.viewColumn + 1
+        case "Rightmost Existing":
+            return Math.max(...tabGroups.all.map((group) => group.viewColumn));
+        default:
+            return vscode.ViewColumn.One;
+    }
+}
+
 function openInWebview(url, title, closeCallback)
 {
-    const columnTwoVisible = vscode.window.tabGroups.all.some((group) => {
-        return group.viewColumn == vscode.ViewColumn.Two;
-    });
-
     const panel = vscode.window.createWebviewPanel(
         'VizTracer',
         title,
-        columnTwoVisible ? vscode.ViewColumn.Two: vscode.ViewColumn.One,
+        chooseColumnToView(),
         {
             enableScripts: true,
             retainContextWhenHidden: true
