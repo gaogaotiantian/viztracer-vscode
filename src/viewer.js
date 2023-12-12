@@ -83,8 +83,11 @@ function openInWebview(url, title, closeCallback)
                 if (fs.existsSync(message.file)) {
                     vscode.workspace.openTextDocument(message.file).then((doc) => {
                         vscode.window.showTextDocument(doc, vscode.ViewColumn.One, true).then((editor) => {
-                            let range = new vscode.Range(message.line - 1, 0, message.line - 1, 0);
-                            editor.revealRange(range, vscode.TextEditorRevealType.AtTop);
+                            const range = new vscode.Range(message.line - 1, 0, message.line - 1, editor.document.lineAt(message.line - 1).text.length);
+                            const selection = new vscode.Selection(range.start, range.end);
+
+                            editor.revealRange(range, vscode.TextEditorRevealType.InCenterIfOutsideViewport);
+                            editor.selection = selection;
                         });
                     });
                 } else {
