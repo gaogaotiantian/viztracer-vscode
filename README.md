@@ -24,6 +24,10 @@ on command line with `viztracer`.
 To set the arguments to `viztracer` or your script, use `viztracer.viztracerArguments`
 and `viztracer.scriptArguments` settings.
 
+By default viztracer will run in your current active terminal if there is one.
+You can set `viztracer.terminalToTrace` to `New Terminal` to always create a new
+terminal to trace the scripts.
+
 ### View Reports
 
 Right-click on your `json` report in the file explorer, choose `View with vizviewer`.
