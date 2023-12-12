@@ -61,6 +61,15 @@
           "default": "",
           "description": "Arguments to pass to the script"
         },
+        "viztracer.terminalToTrace": {
+          "type": "string",
+          "default": "Current Active",
+          "enum": [
+            "Current Active",
+            "New Terminal"
+          ],
+          "description": "Which column will be used to open the viewer tab"
+        },
         "viztracer.openTabOn": {
           "type": "string",
           "default": "Always New",

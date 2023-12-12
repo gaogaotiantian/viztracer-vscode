@@ -14,9 +14,18 @@ function trace(filePath) {
 
             const viztracerArguments = config.get('viztracerArguments');
             const scriptArguments = config.get('scriptArguments');
+            const terminalToTrace = config.get('terminalToTrace');
+            let terminal = null;
 
-            const terminal = vscode.window.createTerminal('VizTracer');
-            terminal.sendText(`viztracer ${viztracerArguments} -- ${filePath} ${scriptArguments}`);
+            if (terminalToTrace == 'Current Active') {
+                terminal = vscode.window.activeTerminal;
+            }
+
+            if (!terminal) {
+                terminal = vscode.window.createTerminal('VizTracer');
+            }
+
+            terminal.sendText(`${pythonPath} -m viztracer ${viztracerArguments} -- ${filePath} ${scriptArguments}`);
             terminal.show();
         }
     });
