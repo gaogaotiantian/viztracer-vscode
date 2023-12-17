@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const fs = require('fs');
-const { confirmVizTracerVersion } = require('./common.js');
+const { confirmVizTracerVersion, escapeSpaces } = require('./common.js');
 
 function trace(filePath) {
     if (!fs.existsSync(filePath)) {
@@ -22,11 +22,15 @@ function trace(filePath) {
             }
 
             if (!terminal) {
-                terminal = vscode.window.createTerminal('VizTracer');
+                terminal = vscode.window.createTerminal();
             }
 
-            terminal.sendText(`${pythonPath} -m viztracer ${viztracerArguments} -- ${filePath} ${scriptArguments}`);
             terminal.show();
+
+            pythonPath = escapeSpaces(pythonPath, terminal, true);
+            filePath = escapeSpaces(filePath, terminal, false);
+
+            terminal.sendText(`${pythonPath} -m viztracer ${viztracerArguments} -- ${filePath} ${scriptArguments}`);
         }
     });
     

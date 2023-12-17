@@ -90,6 +90,27 @@ function confirmVizTracerVersion(target) {
     });
 }
 
+/**
+ * @param {string} path
+ * @param {vscode.Terminal} terminal
+ * @param {boolean} isCommand
+ */
+function escapeSpaces(path, terminal, isCommand) {
+    if (path.includes(" ")) {
+        // Double quote works for POSIX shell and cmd. On powershell, if
+        // it's the arguments, it works as well.
+        // shellPath is not available here so we used the terminal name.
+        // It's not accurate, but it's better than nothing.
+        if (!isCommand || process.platform !== "win32" ||
+            terminal.name.toLowerCase().includes("cmd")) {
+            return '"' + path + '"';
+        }
+        return path.replace(/ /g, "` ");
+    }
+    return path;
+}
+
 module.exports = {
-    confirmVizTracerVersion
+    confirmVizTracerVersion,
+    escapeSpaces
 };
