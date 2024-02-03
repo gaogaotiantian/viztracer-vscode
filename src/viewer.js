@@ -31,9 +31,13 @@ function runVizViewer(pythonPath, reportPath, port)
             vscode.window.showErrorMessage("Please install vizviewer to view the report");
         } else if (m = regex.exec(message)) {
             let url = m[1];
-            openInWebview(url, path.basename(reportPath), () => {
-                process.kill();
-            });
+            vscode.env.asExternalUri(vscode.Uri.parse(url)).then(
+                externalUri => {
+                    openInWebview(externalUri, path.basename(reportPath), () => {
+                        process.kill();
+                    });
+                }
+            )
         } else if (message.includes('Traceback')) {
             vscode.window.showErrorMessage("Error occurred when viewing the report");
         } else if (message.includes('already in use')) {
