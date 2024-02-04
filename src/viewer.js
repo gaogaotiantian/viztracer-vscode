@@ -33,7 +33,7 @@ function runVizViewer(pythonPath, reportPath, port)
             let url = m[1];
             vscode.env.asExternalUri(vscode.Uri.parse(url)).then(
                 externalUri => {
-                    openInWebview(externalUri, path.basename(reportPath), () => {
+                    openInWebview(externalUri.toString(), path.basename(reportPath), () => {
                         process.kill();
                     });
                 }
