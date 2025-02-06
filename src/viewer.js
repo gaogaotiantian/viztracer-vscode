@@ -11,7 +11,7 @@ function viewReport(reportPath)
         vscode.window.showErrorMessage("Report file does not exist");
         return;
     }
-    confirmVizTracerVersion("0.16.1").then((pythonPath) => {
+    confirmVizTracerVersion("1.0.2").then((pythonPath) => {
         if (pythonPath) {
             runVizViewer(pythonPath, reportPath, 9001);
         }

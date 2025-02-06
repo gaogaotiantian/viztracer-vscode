@@ -37,7 +37,7 @@
     "menus": {
       "explorer/context": [
         {
-          "when": "resourceFilename =~ /\\.(json)$/i",
+          "when": "resourceFilename =~ /\\.(json|gz)$/i",
           "command": "viztracer.view",
           "group": "viztracer"
         },

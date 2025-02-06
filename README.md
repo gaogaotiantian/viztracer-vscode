@@ -12,7 +12,7 @@ This is a VS Code Extension for [VizTracer](https://github.com/gaogaotiantian/vi
 ## Requirements
 
 * Official python extension for VS Code.
-* `viztracer >= 0.16.1` needs to be installed in your python environment
+* `viztracer >= 1.0.2` needs to be installed in your python environment
 
 ## Usage
 
@@ -45,6 +45,6 @@ Source code will always be opened in Column One, so you can do side-by-side view
 
 ## License
 
-Copyright 2023-2024 Tian Gao.
+Copyright 2023-2025 Tian Gao.
 
 Distributed under the terms of the [Apache 2.0 license](https://github.com/gaogaotiantian/viztracer-vscode/blob/master/LICENSE)
